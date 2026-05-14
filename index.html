@@ -149,7 +149,7 @@
       
             <nav class="hidden md:flex items-center gap-8 text-sm font-medium">
                 <a href="index" class="text-[#00ff9d] font-semibold">Главная</a>
-                <a href="#" onclick="document.getElementById('tariffs').scrollIntoView({behavior:'smooth'})" class="hover:text-[#00ff9d] transition-colors">Тарифы</a>
+                <a href="index#tariffs" onclick="document.getElementById('tariffs').scrollIntoView({behavior:'smooth'})" class="hover:text-[#00ff9d] transition-colors">Тарифы</a>
                 <a href="https://t.me/grimvpn" target="_blank" class="hover:text-[#00ff9d] transition-colors">Блог</a>
                 <a href="tools" class="hover:text-[#00ff9d] transition-colors">Инструменты</a>
                 <a href="connection" class="hover:text-[#00ff9d] transition-colors">Связаться с нами</a>
@@ -177,7 +177,7 @@
                  id="mobile-menu"
                  class="bg-[#111] border-t border-white/10 px-6 py-6 text-sm font-medium flex flex-col gap-6 absolute top-0 left-0 right-0 mt-[73px]">
                 <a href="index" onclick="toggleMobileMenu()" class="text-[#00ff9d]">Главная</a>
-                <a href="#" onclick="document.getElementById('tariffs').scrollIntoView({behavior:'smooth'}); toggleMobileMenu()" class="hover:text-[#00ff9d]">Тарифы</a>
+                <a href="index#tariffs" onclick="document.getElementById('tariffs').scrollIntoView({behavior:'smooth'}); toggleMobileMenu()" class="hover:text-[#00ff9d]">Тарифы</a>
                 <a href="https://t.me/grimvpn" target="_blank" onclick="toggleMobileMenu()" class="hover:text-[#00ff9d]">Блог</a>
                 <a href="tools" onclick="toggleMobileMenu()" class="hover:text-[#00ff9d]">Инструменты</a>
                 <a href="connection" onclick="toggleMobileMenu()" class="hover:text-[#00ff9d]">Связаться с нами</a>
@@ -530,7 +530,7 @@
 
         function buyPlan(planId) {
             const plans = {
-                1: { name: 'Базовый', price: 350, period: '1 месяц' },
+                1: { name: 'Basic', price: 350, period: '1 месяц' },
                 2: { name: 'Premium', price: 890, period: '3 месяца' },
                 3: { name: 'Ultimate', price: 1470, period: '6 месяцев' }
             }
@@ -586,13 +586,13 @@
                     <label class="block text-sm mb-3 font-medium">Метод оплаты</label>
                     <div class="grid grid-cols-3 gap-3" id="payment-options">
                         <div onclick="selectPaymentMethod('sbp', this)" class="payment-option flex flex-col items-center justify-center gap-2 border-2 border-white/20 hover:border-[#00ff9d] rounded-3xl py-4 cursor-pointer transition-all">
-                            <img src="sbp.svg" alt="СБП" class="w-10 h-10 object-contain"><span class="font-medium text-sm">СБП</span>
+                            <img src="icons/sbp.svg" alt="СБП" class="w-10 h-10 object-contain"><span class="font-medium text-sm">СБП</span>
                         </div>
                         <div onclick="selectPaymentMethod('card', this)" class="payment-option flex flex-col items-center justify-center gap-2 border-2 border-white/20 hover:border-[#00ff9d] rounded-3xl py-4 cursor-pointer transition-all">
-                            <img src="card.svg" alt="Карта" class="w-10 h-10 object-contain"><span class="font-medium text-sm">Карта</span>
+                            <img src="icons/card.svg" alt="Карта" class="w-10 h-10 object-contain"><span class="font-medium text-sm">Карта</span>
                         </div>
                         <div onclick="selectPaymentMethod('crypto', this)" class="payment-option flex flex-col items-center justify-center gap-2 border-2 border-white/20 hover:border-[#00ff9d] rounded-3xl py-4 cursor-pointer transition-all">
-                            <img src="cripto.svg" alt="Криптовалюта" class="w-10 h-10 object-contain"><span class="font-medium text-sm">Крипта</span>
+                            <img src="icons/cripto.svg" alt="Криптовалюта" class="w-10 h-10 object-contain"><span class="font-medium text-sm">Крипта</span>
                         </div>
                     </div>
                 </div>`
