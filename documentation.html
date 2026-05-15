@@ -311,7 +311,6 @@ document.getElementById('install-panels-content').style.maxHeight = '500px';
 document.getElementById('install-panels-icon').style.transform = 'rotate(180deg)';
 
 function switchArticle(articleId, btnElement) {
-    // 1. Скрываем все статьи
     document.querySelectorAll('.article-block').forEach(el => {
         el.classList.add('hidden-article');
         el.classList.remove('fade-enter-active', 'fade-enter');
