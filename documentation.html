@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grim VPN | Documentation</title>
+
+    <meta property="og:title" content="Grim VPN | Надёжная защита и обход блокировок" />
+    <meta property="og:description" content="Безопасный и быстрый VPN. Zero-log политика, доступ ко всем сервисам" />
+    <meta property="og:image" content="https://grimvpn.github.io/preview.png" />
+    <meta property="og:url" content="https://grimvpn.github.io/" />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    
+    <link rel="icon" href="favicon.png" type="image/png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet">
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
+
+        :root { --tw-color-primary: #00ff9d; }
+
+        * {
+            font-family: 'Inter', system-ui, sans-serif;
+        }
+
+        body {
+            background: #0a0a0a;
+            color: #f0f0f0;
+            overflow-x: hidden;
+        }
+
+        .header-bg {
+            background: linear-gradient(180deg, #0a0a0a 0%, #111111 100%);
+        }
+
+        .hero-bg {
+            background: radial-gradient(circle at center, #1a1a1a 0%, #0a0a0a 70%);
+        }
+
+        a {
+            word-break: break-word;
+        }
+
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #111; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #333; 
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #00ff9d; 
+        }
+
+        .fade-enter {
+            opacity: 0;
+            transform: translateY(10px);
+        }
+        .fade-enter-active {
+            opacity: 1;
+            transform: translateY(0);
+            transition: opacity 300ms ease-out, transform 300ms ease-out;
+        }
+        
+        .hidden-article {
+            display: none;
+        }
+    </style>
+</head>
+
+<body class="antialiased">
+
+<header class="header-bg border-b border-white/10 sticky top-0 z-50">
+    <div class="max-w-screen-2xl mx-auto px-6 py-5 flex items-center">
+       
+        <div class="flex items-center gap-3">
+            <div class="w-9 h-9 bg-[#00ff9d] rounded-2xl flex items-center justify-center text-black font-bold text-2xl rotate-12">G</div>
+            <h1 class="text-3xl font-semibold tracking-tighter">grim</h1>
+        </div>
+
+        <nav class="flex-1 flex justify-center items-center gap-8 text-sm font-medium hidden md:flex">
+            <a href="index" class="hover:text-[#00ff9d] transition-colors">Главная</a>
+            <a href="index#tariffs" class="hover:text-[#00ff9d] transition-colors">Тарифы</a>
+            <a href="https://t.me/grimvpn" target="_blank" class="hover:text-[#00ff9d] transition-colors">Блог</a>
+            <a href="tools" class="hover:text-[#00ff9d] transition-colors">Инструменты</a>
+            <a href="documentation" class="text-[#00ff9d] font-semibold">Инструкции</a>
+            <a href="connection" class="hover:text-[#00ff9d] transition-colors">Связаться с нами</a>
+        </nav>
+
+        <button onclick="toggleMobileMenu()" class="ml-auto md:hidden w-11 h-11 flex items-center justify-center text-3xl">
+            <span id="menu-icon">☰</span>
+        </button>
+    </div>
+
+    <div onclick="if(event.target.id === 'mobile-menu-overlay') toggleMobileMenu()"
+         id="mobile-menu-overlay"
+         class="hidden fixed inset-0 bg-black/70 z-[999] md:hidden">
+
+        <div onclick="event.stopImmediatePropagation()"
+             id="mobile-menu"
+             class="bg-[#111] border-t border-white/10 px-6 py-6 text-sm font-medium flex flex-col gap-6 absolute top-0 left-0 right-0 mt-[73px]">
+
+            <a href="index" onclick="toggleMobileMenu()" class="hover:text-[#00ff9d]">Главная</a>
+            <a href="index#tariffs" onclick="toggleMobileMenu()" class="hover:text-[#00ff9d]">Тарифы</a>
+            <a href="https://t.me/grimvpn" target="_blank" onclick="toggleMobileMenu()" class="hover:text-[#00ff9d]">Блог</a>
+            <a href="tools" onclick="toggleMobileMenu()" class="hover:text-[#00ff9d]">Инструменты</a>
+            <a href="documentation" onclick="toggleMobileMenu()" class="text-[#00ff9d]">Инструкции</a>
+            <a href="connection" onclick="toggleMobileMenu()" class="hover:text-[#00ff9d]">Связаться с нами</a>
+        </div>
+    </div>
+</header>
+
+<section class="hero-bg pt-12 pb-8 border-b border-white/10">
+    <div class="max-w-screen-2xl mx-auto px-6 text-center">
+        <h1 class="text-4xl md:text-5xl font-semibold tracking-tighter">Документация и инструкции</h1>
+        <p class="text-lg text-white/70 mt-3">Руководства по настройке и установке</p>
+    </div>
+</section>
+
+<div class="max-w-screen-2xl mx-auto px-6 py-12 flex flex-col lg:flex-row gap-10">
+    
+    <aside class="w-full lg:w-80 shrink-0">
+        <div class="bg-white/5 border border-white/10 rounded-2xl p-4 sticky top-24">
+            
+            <div class="mb-2">
+                <button onclick="toggleSidebarSection('install-panels')" class="w-full flex justify-between items-center text-left font-semibold text-lg p-3 rounded-xl hover:bg-white/5 transition-all">
+                    <span>Установка панелей</span>
+                    <svg id="install-panels-icon" class="w-5 h-5 transform transition-transform duration-300 text-white/50" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                </button>
+                
+                <div id="install-panels-content" class="mt-2 space-y-1 overflow-hidden transition-all duration-300 max-h-[500px]">
+                    
+                    <button onclick="switchArticle('3x-ui', this)" class="nav-item w-full flex items-center gap-3 p-3 rounded-xl hover:bg-white/10 transition-all text-white bg-white/10 font-medium">
+                        <img src="panels/3x-ui.png" class="w-6 h-6 object-contain rounded" alt="3x-ui">
+                        3x-ui
+                    </button>
+                    
+                    <button onclick="switchArticle('remnawave', this)" class="nav-item w-full flex items-center gap-3 p-3 rounded-xl hover:bg-white/10 transition-all text-white/70 hover:text-white">
+                        <img src="panels/Remnawave logo.png" class="w-6 h-6 object-contain rounded" alt="Remnawave">
+                        Remnawave
+                    </button>
+
+                    <button onclick="switchArticle('blitz', this)" class="nav-item w-full flex items-center gap-3 p-3 rounded-xl hover:bg-white/10 transition-all text-white/70 hover:text-white">
+                        <img src="panels/Blitz.png" class="w-6 h-6 object-contain rounded bg-white" alt="Blitz">
+                        Blitz
+                    </button>
+
+                    <button onclick="switchArticle('marzban', this)" class="nav-item w-full flex items-center gap-3 p-3 rounded-xl hover:bg-white/10 transition-all text-white/70 hover:text-white">
+                        <img src="panels/Marzban.png" class="w-6 h-6 object-contain rounded bg-white" alt="Marzban">
+                        Marzban
+                    </button>
+
+                </div>
+            </div>
+
+        </div>
+    </aside>
+
+    <main class="flex-1 min-w-0" id="main-content-wrapper">
+        <div class="bg-white/5 border border-white/10 rounded-3xl p-8 md:p-12">
+            
+            <div id="article-3x-ui" class="article-block">
+                <div class="flex items-center gap-4 mb-6">
+                    <img src="panels/3x-ui.png" class="w-12 h-12 object-contain rounded-lg" alt="Icon">
+                    <h2 class="text-3xl md:text-4xl font-semibold tracking-tight">3X-UI</h2>
+                </div>
+                
+                <p class="text-white/80 text-lg leading-relaxed mb-8">
+                    3X-UI — это усовершенствованная веб-панель управления с открытым исходным кодом, предназначенная для управления сервером Xray-core. Она предлагает удобный интерфейс для настройки и мониторинга различных VPN- и прокси-протоколов.
+                </p>
+
+                <img src="panels/3x-ui panel.png" class="w-full rounded-2xl border border-white/10 mb-10 object-cover shadow-2xl" alt="3x-ui panel screenshot">
+
+                <div class="space-y-10 mb-10">
+                    <div>
+                        <h3 class="text-xl font-medium mb-3">Шаг 1</h3>
+                        <p class="text-white/80 text-lg">
+                            Подключитесь к серверу. Для этого можно использовать консоль либо программу 
+                            <a href="https://www.termius.com/" target="_blank" class="text-[#00ff9d] hover:underline font-medium">Termius</a> или 
+                            <a href="https://mobaxterm.mobatek.net/" target="_blank" class="text-[#00ff9d] hover:underline font-medium">Mobaxterm</a>.
+                        </p>
+                    </div>
+
+                    <div>
+                        <h3 class="text-xl font-medium mb-3">Шаг 2</h3>
+                        <p class="text-white/80 text-lg mb-4">Обновите пакеты введя команду:</p>
+                        <div class="bg-black border border-white/10 rounded-2xl p-2 pl-6 flex items-center justify-between gap-4 mb-4">
+                            <code id="cmd-step2-1" class="text-[#00ff9d] font-mono text-sm md:text-base break-all overflow-x-auto whitespace-nowrap py-4">apt update &amp;&amp; sudo apt upgrade</code>
+                            <button onclick="copyCommand('cmd-step2-1', this)" class="bg-white/10 hover:bg-[#00ff9d] hover:text-black transition-all p-4 rounded-xl shrink-0 group relative" title="Скопировать">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+                                <span class="copy-tooltip absolute -top-10 left-1/2 -translate-x-1/2 bg-[#00ff9d] text-black text-xs font-bold py-1 px-2 rounded opacity-0 transition-opacity pointer-events-none">Скопировано!</span>
+                            </button>
+                        </div>
+                        <p class="text-white/80 text-lg mb-4">Если хотите сразу пропустить Шаг 3:</p>
+                        <div class="bg-black border border-white/10 rounded-2xl p-2 pl-6 flex items-center justify-between gap-4">
+                            <code id="cmd-step2-2" class="text-[#00ff9d] font-mono text-sm md:text-base break-all overflow-x-auto whitespace-nowrap py-4">apt update &amp;&amp; sudo apt upgrade -y</code>
+                            <button onclick="copyCommand('cmd-step2-2', this)" class="bg-white/10 hover:bg-[#00ff9d] hover:text-black transition-all p-4 rounded-xl shrink-0 group relative" title="Скопировать">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+                                <span class="copy-tooltip absolute -top-10 left-1/2 -translate-x-1/2 bg-[#00ff9d] text-black text-xs font-bold py-1 px-2 rounded opacity-0 transition-opacity pointer-events-none">Скопировано!</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h3 class="text-xl font-medium mb-3">Шаг 3</h3>
+                        <img src="panels/3x3.png" class="w-full rounded-2xl border border-white/10 mb-4 object-cover shadow-2xl" alt="Шаг 3">
+                        <p class="text-white/80 text-lg">На вопрос Do you want to continue? пишем y</p>
+                    </div>
+
+                    <div>
+                        <h3 class="text-xl font-medium mb-3">Шаг 4</h3>
+                        <img src="panels/3x4.png" class="w-full rounded-2xl border border-white/10 mb-4 object-cover shadow-2xl" alt="Шаг 4">
+                        <p class="text-white/80 text-lg">Выбираем вариант 2 keep the local version currently installed</p>
+                    </div>
+
+                    <div>
+                        <h3 class="text-xl font-medium mb-3">Шаг 5</h3>
+                        <p class="text-white/80 text-lg mb-4">Устанавливаем саму панель 3x-UI:</p>
+                        <div class="bg-black border border-white/10 rounded-2xl p-2 pl-6 flex items-center justify-between gap-4">
+                            <code id="cmd-step5" class="text-[#00ff9d] font-mono text-sm md:text-base break-all overflow-x-auto whitespace-nowrap py-4">bash <(curl -Ls https://raw.githubusercontent.com/mhsanaei/3x-ui/master/install.sh)</code>
+                            <button onclick="copyCommand('cmd-step5', this)" class="bg-white/10 hover:bg-[#00ff9d] hover:text-black transition-all p-4 rounded-xl shrink-0 group relative" title="Скопировать">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+                                <span class="copy-tooltip absolute -top-10 left-1/2 -translate-x-1/2 bg-[#00ff9d] text-black text-xs font-bold py-1 px-2 rounded opacity-0 transition-opacity pointer-events-none">Скопировано!</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h3 class="text-xl font-medium mb-3">Шаг 6</h3>
+                        <img src="panels/3x6.png" class="w-full rounded-2xl border border-white/10 mb-4 object-cover shadow-2xl" alt="Шаг 6">
+                        <p class="text-white/80 text-lg">Если хотите указать свой порт - y, если хотите сгенерированный - n</p>
+                    </div>
+
+                    <div>
+                        <h3 class="text-xl font-medium mb-3">Шаг 7</h3>
+                        <img src="panels/3x7.png" class="w-full rounded-2xl border border-white/10 mb-4 object-cover shadow-2xl" alt="Шаг 7">
+                        <p class="text-white/80 text-lg">Если у вас есть свой домен то выбирайте 1, если нет то 2</p>
+                    </div>
+
+                    <div>
+                        <h3 class="text-xl font-medium mb-3">Шаг 8</h3>
+                        <img src="panels/3x8.png" class="w-full rounded-2xl border border-white/10 mb-4 object-cover shadow-2xl" alt="Шаг 8">
+                        <p class="text-white/80 text-lg">Если ваш сервер имеет IPv6, то вписывайте, если он отсутствует или не знаете, то пропустите.</p>
+                    </div>
+
+                    <div>
+                        <h3 class="text-xl font-medium mb-3">Шаг 9</h3>
+                        <img src="panels/3x9.png" class="w-full rounded-2xl border border-white/10 mb-4 object-cover shadow-2xl" alt="Шаг 9">
+                        <p class="text-white/80 text-lg">Можете указать свой порт или пропустите, оставив по умолчанию порт 80.</p>
+                    </div>
+
+                    <div>
+                        <h3 class="text-xl font-medium mb-3">Шаг 10</h3>
+                        <img src="panels/3x101.png" class="w-full rounded-2xl border border-white/10 mb-4 object-cover shadow-2xl" alt="Шаг 10 - 1">
+                        <img src="panels/3x102.png" class="w-full rounded-2xl border border-white/10 mb-4 object-cover shadow-2xl" alt="Шаг 10 - 2">
+                        <p class="text-white/80 text-lg">Сохраните полученные данные(ссылку, логин и пароль). Войдите в панель и настройте инбаунты для подключений.</p>
+                    </div>
+                </div>
+
+                <div class="bg-[#00ff9d]/10 border border-[#00ff9d]/20 rounded-2xl p-6">
+                    <p class="text-white/80">Для получения большей информации ознакомьтесь с оффициальным wiki:</p>
+                    <a href="https://github.com/MHSanaei/3x-ui/wiki" target="_blank" class="text-[#00ff9d] font-medium hover:underline break-all mt-2 inline-block">
+                        https://github.com/MHSanaei/3x-ui/wiki
+                    </a>
+                </div>
+            </div>
+
+            <div id="article-remnawave" class="article-block hidden-article">
+                <div class="flex items-center gap-4 mb-6">
+                    <img src="panels/Remnawave logo.png" class="w-12 h-12 object-contain rounded-lg" alt="Icon">
+                    <h2 class="text-3xl md:text-4xl font-semibold tracking-tight">Remnawave</h2>
+                </div>
+                
+                <p class="text-white/80 text-lg leading-relaxed mb-8">
+                    Remnawave — панель созданная на основе Xray Core , предоставляет богатый функционал для управления пользователями и прокси-серверами. Легко добавляйте пользователей, узлы, настраивайте Xray и многое другое с помощью многофункционального REST API на базе NestJS .
+                </p>
+
+                <img src="panels/Remnawave panel.png" class="w-full rounded-2xl border border-white/10 mb-10 object-cover shadow-2xl" alt="Remnawave panel screenshot">
+
+                <h3 class="text-xl font-medium mb-4">Команда для установки:</h3>
+                <div class="bg-black border border-white/10 rounded-2xl p-2 pl-6 flex items-center justify-between gap-4 mb-10">
+                    <code id="cmd-remnawave" class="text-[#00ff9d] font-mono text-sm md:text-base break-all overflow-x-auto whitespace-nowrap py-4">bash <(curl -Ls https://raw.githubusercontent.com/mhsanaei/3x-ui/master/install.sh)</code>
+                    <button onclick="copyCommand('cmd-remnawave', this)" class="bg-white/10 hover:bg-[#00ff9d] hover:text-black transition-all p-4 rounded-xl shrink-0 group relative" title="Скопировать">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+                        <span class="copy-tooltip absolute -top-10 left-1/2 -translate-x-1/2 bg-[#00ff9d] text-black text-xs font-bold py-1 px-2 rounded opacity-0 transition-opacity pointer-events-none">Скопировано!</span>
+                    </button>
+                </div>
+
+                <div class="bg-[#00ff9d]/10 border border-[#00ff9d]/20 rounded-2xl p-6">
+                    <p class="text-white/80">Для получения большей информации ознакомьтесь с оффициальной документацией:</p>
+                    <a href="https://docs.rw/docs/overview/introduction" target="_blank" class="text-[#00ff9d] font-medium hover:underline break-all mt-2 inline-block">
+                        https://docs.rw/docs/overview/introduction
+                    </a>
+                </div>
+            </div>
+
+            <div id="article-blitz" class="article-block hidden-article">
+                <div class="flex items-center gap-4 mb-6">
+                    <img src="panels/Blitz.png" class="w-12 h-12 object-contain rounded-lg bg-white" alt="Icon">
+                    <h2 class="text-3xl md:text-4xl font-semibold tracking-tight">Blitz</h2>
+                </div>
+                
+                <p class="text-white/80 text-lg leading-relaxed mb-8">
+                    Blitz — удобная панель управления для прокси-сервера Hysteria2. Включает в себя полное управление пользователями, мониторинг трафика, интеграцию с WARP, поддержку ботов Telegram и различные форматы подписки. Простая установка с расширенными параметрами конфигурации как для начинающих, так и для опытных пользователей.
+                </p>
+
+                <img src="panels/Blitz panel.png" class="w-full rounded-2xl border border-white/10 mb-10 object-cover shadow-2xl" alt="Blitz panel screenshot">
+
+                <h3 class="text-xl font-medium mb-4">Команда для установки:</h3>
+                <div class="bg-black border border-white/10 rounded-2xl p-2 pl-6 flex items-center justify-between gap-4 mb-10">
+                    <code id="cmd-blitz" class="text-[#00ff9d] font-mono text-sm md:text-base break-all overflow-x-auto whitespace-nowrap py-4">bash <(curl https://raw.githubusercontent.com/ReturnFI/Blitz/main/install.sh)</code>
+                    <button onclick="copyCommand('cmd-blitz', this)" class="bg-white/10 hover:bg-[#00ff9d] hover:text-black transition-all p-4 rounded-xl shrink-0 group relative" title="Скопировать">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+                        <span class="copy-tooltip absolute -top-10 left-1/2 -translate-x-1/2 bg-[#00ff9d] text-black text-xs font-bold py-1 px-2 rounded opacity-0 transition-opacity pointer-events-none">Скопировано!</span>
+                    </button>
+                </div>
+
+                <div class="bg-[#00ff9d]/10 border border-[#00ff9d]/20 rounded-2xl p-6">
+                    <p class="text-white/80">Для получения большей информации ознакомьтесь с оффициальным репозиторием:</p>
+                    <a href="https://github.com/ReturnFI/Blitz" target="_blank" class="text-[#00ff9d] font-medium hover:underline break-all mt-2 inline-block">
+                        https://github.com/ReturnFI/Blitz
+                    </a>
+                </div>
+            </div>
+
+            <div id="article-marzban" class="article-block hidden-article">
+                <div class="flex items-center gap-4 mb-6">
+                    <img src="panels/Marzban.png" class="w-12 h-12 object-contain rounded-lg bg-white" alt="Icon">
+                    <h2 class="text-3xl md:text-4xl font-semibold tracking-tight">Marzban</h2>
+                </div>
+                
+                <p class="text-white/80 text-lg leading-relaxed mb-8">
+                    Marzban — панель управления прокси-серверами, предоставляющая простой и удобный пользовательский интерфейс для управления сотнями учетных записей прокси, работающая на основе Xray-core и разработанная с использованием Python и Reactjs.
+                </p>
+
+                <img src="panels/Marzban panel.png" class="w-full rounded-2xl border border-white/10 mb-10 object-cover shadow-2xl" alt="Marzban panel screenshot">
+
+                <h3 class="text-xl font-medium mb-4">Команда для установки:</h3>
+                <div class="bg-black border border-white/10 rounded-2xl p-2 pl-6 flex items-center justify-between gap-4 mb-10">
+                    <code id="cmd-marzban" class="text-[#00ff9d] font-mono text-sm md:text-base break-all overflow-x-auto whitespace-nowrap py-4">bash <(curl -Ls https://raw.githubusercontent.com/mhsanaei/3x-ui/master/install.sh)</code>
+                    <button onclick="copyCommand('cmd-marzban', this)" class="bg-white/10 hover:bg-[#00ff9d] hover:text-black transition-all p-4 rounded-xl shrink-0 group relative" title="Скопировать">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+                        <span class="copy-tooltip absolute -top-10 left-1/2 -translate-x-1/2 bg-[#00ff9d] text-black text-xs font-bold py-1 px-2 rounded opacity-0 transition-opacity pointer-events-none">Скопировано!</span>
+                    </button>
+                </div>
+
+                <div class="bg-[#00ff9d]/10 border border-[#00ff9d]/20 rounded-2xl p-6">
+                    <p class="text-white/80">Для получения большей информации ознакомьтесь с оффициальной документацией:</p>
+                    <a href="https://gozargah.github.io/marzban/ru/docs/introduction" target="_blank" class="text-[#00ff9d] font-medium hover:underline break-all mt-2 inline-block">
+                        https://gozargah.github.io/marzban/ru/docs/introduction
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+</div>
+
+<footer class="bg-black border-t border-white/10 py-12 mt-10">
+    <div class="max-w-screen-2xl mx-auto px-6 text-xs text-white/40 flex flex-wrap justify-between items-center gap-6">
+        <div>© 2026 Grim VPN. Все права защищены.</div>
+
+        <div class="flex gap-6">
+            <a href="privacy" class="hover:text-white">Privacy Policy</a>
+            <a href="useragreement" class="hover:text-white">User Agreement</a>
+            <a href="https://t.me/grimvpn" target="_blank" class="hover:text-white">Блог</a>
+            <a href="connection" class="hover:text-white">Поддержка</a>
+        </div>
+
+        <div>Service <span class="text-[#00ff9d]">Grim VPN</span> • Ваш интернет - только ваш</div>
+    </div>
+</footer>
+
+<script>
+function toggleSidebarSection(id) {
+    const content = document.getElementById(`${id}-content`);
+    const icon = document.getElementById(`${id}-icon`);
+    
+    if (content.style.maxHeight === '0px') {
+        content.style.maxHeight = '500px';
+        icon.style.transform = 'rotate(180deg)';
+    } else {
+        content.style.maxHeight = '0px';
+        icon.style.transform = 'rotate(0deg)';
+    }
+}
+
+document.getElementById('install-panels-content').style.maxHeight = '500px';
+document.getElementById('install-panels-icon').style.transform = 'rotate(180deg)';
+
+function switchArticle(articleId, btnElement) {
+    document.querySelectorAll('.article-block').forEach(el => {
+        el.classList.add('hidden-article');
+        el.classList.remove('fade-enter-active', 'fade-enter');
+    });
+
+    const targetArticle = document.getElementById(`article-${articleId}`);
+    targetArticle.classList.remove('hidden-article');
+    targetArticle.classList.add('fade-enter');
+    
+    void targetArticle.offsetWidth; 
+    
+    targetArticle.classList.remove('fade-enter');
+    targetArticle.classList.add('fade-enter-active');
+
+    document.querySelectorAll('.nav-item').forEach(el => {
+        el.classList.remove('bg-white/10', 'text-white', 'font-medium');
+        el.classList.add('text-white/70');
+    });
+    
+    btnElement.classList.remove('text-white/70');
+    btnElement.classList.add('bg-white/10', 'text-white', 'font-medium');
+
+    if (window.innerWidth < 1024) {
+        document.getElementById('main-content-wrapper').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+}
+
+function copyCommand(cmdId, btnElement) {
+    const cmdText = document.getElementById(cmdId).textContent;
+    const tooltip = btnElement.querySelector('.copy-tooltip');
+    
+    navigator.clipboard.writeText(cmdText).then(() => {
+        tooltip.classList.remove('opacity-0');
+        tooltip.classList.add('opacity-100');
+        
+        setTimeout(() => {
+            tooltip.classList.remove('opacity-100');
+            tooltip.classList.add('opacity-0');
+        }, 2000);
+    }).catch(err => {
+        console.error('Ошибка копирования: ', err);
+    });
+}
+
+let isMenuOpen = false;
+
+function toggleMobileMenu() {
+    const overlay = document.getElementById('mobile-menu-overlay');
+    const icon = document.getElementById('menu-icon');
+
+    isMenuOpen = !isMenuOpen;
+
+    if (isMenuOpen) {
+        overlay.classList.remove('hidden');
+        overlay.classList.add('flex');
+        icon.textContent = '✕';
+        icon.style.transform = 'rotate(90deg)';
+    } else {
+        overlay.classList.add('hidden');
+        overlay.classList.remove('flex');
+        icon.textContent = '☰';
+        icon.style.transform = 'rotate(0deg)';
+    }
+}
+</script>
+
+</body>
+</html>
